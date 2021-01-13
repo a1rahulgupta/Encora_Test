@@ -1,0 +1,197 @@
+{
+    "paths": {
+        "/addUpdateNotes": {
+            "post": {
+                "tags": [
+                    "Note Management"
+                ],
+                "description": "Add Note",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Add Note",
+                        "schema": {
+                            "$ref": "#/definitions/AddNote"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization token",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Note added successfully.",
+                        "schema": {
+                            "$ref": "#/definitions/AddNote"
+                        }
+                    }
+                }
+            }
+        },
+        "/notesList": {
+            "post": {
+                "tags": [
+                    "Note Management"
+                ],
+                "description": "Note list",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Params",
+                        "schema": {
+                            "$ref": "#/definitions/NotesList"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization token",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Note list.",
+                        "schema": {
+                            "$ref": "#/definitions/NotesList"
+                        }
+                    }
+                }
+            }
+        },
+        "/deleteNotes": {
+            "post": {
+                "tags": [
+                    "Note Management"
+                ],
+                "description": "Delete Notes",
+                "parameters": [
+                    {
+                        "name": "ids",
+                        "in": "body",
+                        "description": "Ids of users",
+                        "schema": {
+                            "$ref": "#/definitions/DeleteNote"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization token",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notes deleted successfully.",
+                        "schema": {
+                            "$ref": "#/definitions/DeleteNote"
+                        }
+                    }
+                }
+            }
+        },
+        "/getNotesDetails/{NoteId}": {
+            "get": {
+                "tags": [
+                    "Note Management"
+                ],
+                "description": "Get Note",
+                "parameters": [
+                    {
+                        "name": "NoteId",
+                        "in": "path",
+                        "description": "Id of Note",
+                        "schema": {
+                            "$ref": "#/definitions/NotesList"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization token",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User data.",
+                        "schema": {
+                            "$ref": "#/definitions/NotesList"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "NotesList": {
+            "required": [
+                "page",
+                "pagesize"
+            ],
+            "properties": {
+                "page": {
+                    "example": 1,
+                    "type": "number"
+                },
+                "pagesize": {
+                    "example": 10,
+                    "type": "number"
+                },
+                "searchText": {
+                    "example": "",
+                    "type": "string"
+                }
+            
+            }
+        },
+        "DeleteNote": {
+            "required": [
+                "ids"
+            ],
+            "properties": {
+                "ids": {
+                    "example": [
+                        "5ce25306e6405f7072059128",
+                        "5ce25320e6405f707205912f"
+                    ],
+                    "type": "array"
+                }
+            }
+        },
+        "AddNote": {
+            "required": [
+                "title",
+                "description"
+            ],
+            "properties": {
+                "title": {
+                    "example": "Test",
+                    "type": "string"
+                },
+                "description": {
+                    "example": "Welcome to test",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
