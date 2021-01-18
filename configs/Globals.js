@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const Moment = require('moment');
 const i18n = require("i18n");
-let jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 
 const config = require('./configs');
 const Authentication = require('../app/modules/Authentication/Schema').Authtokens;

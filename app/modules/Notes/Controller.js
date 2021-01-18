@@ -6,6 +6,7 @@ const Model = require("../Base/Model");
 const Notes = require('./Schema').Notes;
 const RequestBody = require("../../services/RequestBody");
 const CommonService = require("../../services/Common");
+const { StatusCodes }  = require('http-status-codes');
 
 class NotesController extends Controller {
     constructor() {
@@ -31,21 +32,21 @@ class NotesController extends Controller {
             if (this.req.body.id) {
                 const noteData = await Notes.findByIdAndUpdate(this.req.body.id, data, { new: true });
                 if (_.isEmpty(noteData)) {
-                    return this.res.send({ status: 0, message: i18n.__('NOTES__NOT_UPDATED') })
+                    return this.res.status(StatusCodes.NOT_MODIFIED).send({ status: 0, message: i18n.__('NOTES__NOT_UPDATED') })
                 }
-                return this.res.send({ status: 1, message: i18n.__('NOTES_UPDATED'), noteData })
+                return this.res.status(StatusCodes.OK).send({ status: 1, message: i18n.__('NOTES_UPDATED'), noteData })
 
             } else {
                 const noteData = await (new Model(Notes)).store(data);
                 if (_.isEmpty(noteData)) {
-                    return this.res.send({ status: 0, message:i18n.__('NOTES_NOT_SAVED.') })
+                    return this.res.status(StatusCodes.BAD_REQUEST).send({ status: 0, message:i18n.__('NOTES_NOT_SAVED.') })
                 }
-                return this.res.send({ status: 1, message: i18n.__('NOTES_SAVED'), noteData });
+                return this.res.status(StatusCodes.OK).send({ status: 1, message: i18n.__('NOTES_SAVED'), noteData });
             }
 
         } catch (error) {
             console.log("error- ", error);
-            return this.res.send({ status: 0, message: error });
+            return this.res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ status: 0, message: error });
         }
     }
 
@@ -72,7 +73,7 @@ class NotesController extends Controller {
             return this.res.send(result);
         } catch (error) {
             console.log("error- ", error);
-            this.res.send({ status: 0, message: error });
+            this.res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ status: 0, message: error });
         }
     }
 
@@ -91,7 +92,7 @@ class NotesController extends Controller {
             return this.res.send(_.isEmpty(noteData) ? { status: 0, message: i18n.__('NOTE_NOT_FOUND') } : { status: 1, data: noteData });
         } catch (error) {
             console.log("error- ", error);
-            this.res.send({ status: 0, message: error });
+            this.res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ status: 0, message: error });
         }
     }
 
@@ -111,10 +112,10 @@ class NotesController extends Controller {
             if (updatedNotes) {
                 msg = updatedNotes.nModified ? updatedNotes.nModified +  i18n.__("NOTES_DELETED") : updatedNotes.n == 0 ? i18n.__("NOTES_NOT_FOUND") : msg;
             }
-            return this.res.send({ status: 1, message: msg });
+            return this.res.status(StatusCodes.OK).send({ status: 1, message: msg });
         } catch (error) {
             console.log("error- ", error);
-            this.res.send({ status: 0, message: error });
+            this.res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ status: 0, message: error });
         }
     }
 

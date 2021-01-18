@@ -1,5 +1,5 @@
-let mongoose = require('mongoose');
-let schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const schema = mongoose.Schema;
 const _ = require("lodash");
 
 let user = new schema({

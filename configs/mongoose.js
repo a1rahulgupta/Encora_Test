@@ -1,8 +1,8 @@
 /****************************
  MONGOOSE SCHEMAS
  ****************************/
-let config = require('./configs');
-let mongoose = require('mongoose');
+const config = require('./configs');
+const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 let mongoDBOptions = {

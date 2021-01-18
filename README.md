@@ -1,4 +1,11 @@
 
+## Prequisites (Development)
+
+| Module | Version |
+| --- | --- |
+| Node | 12.16.0 |
+| Npm | 6.13.0 |
+| Mongodb | 4.0.2 |
 
 ## Development Server Back-End (Node)
 
@@ -15,6 +22,8 @@ Run `node server.js `for  node server. This app will automatically connected to 
 API URL - `http://localhost:5005/api/`
 
 Swagger for API Docs -URL: `http://localhost:5005/docs/#/`
+
+Swagger U/P - encora_test
 
 
 

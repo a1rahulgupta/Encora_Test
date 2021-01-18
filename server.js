@@ -1,13 +1,13 @@
 
 // Include Modules
-let exp = require('express');
-let path = require('path');
-let fs = require('fs');
-let i18n = require("i18n");
+const exp = require('express');
+const path = require('path');
+const fs = require('fs');
+const i18n = require("i18n");
 
-let config = require('./configs/configs');
-let express = require('./configs/express');
-let mongoose = require('./configs/mongoose');
+const config = require('./configs/configs');
+const express = require('./configs/express');
+const mongoose = require('./configs/mongoose');
 
 // en: Engilsh,
 i18n.configure({
@@ -16,10 +16,10 @@ i18n.configure({
     defaultLocale: 'en',
     register: global,
 });
-let swaggerUi = require('swagger-ui-express');
+const swaggerUi = require('swagger-ui-express');
 
 // HTTP Authentication
-let basicAuth = require('basic-auth');
+const basicAuth = require('basic-auth');
 let auth = function (req, res, next) {
     let user = basicAuth(req);
     if (!user || !user.name || !user.pass) {

@@ -1,12 +1,10 @@
 const express = require('express');
 const morgan = require('morgan');
-const morganBody = require('morgan-body');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const cors = require('cors'); //For cross domain error
 const fs = require('file-system');
-const path = require('path');
 const timeout = require('connect-timeout');
 const glob = require('glob');
 
@@ -15,7 +13,7 @@ const config = require('./configs');
 
 module.exports = function () {
   console.log('env - ' + process.env.NODE_ENV)
-  let app = express();
+  const app = express();
 
   if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));

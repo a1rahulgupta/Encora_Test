@@ -94,6 +94,21 @@ class Common {
             }
         })
     }
+
+    verifyPassword(data) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                let isVerified = false;
+                if (data && data.password && data.savedPassword) {
+                    let base64data = Buffer.from(data.savedPassword, 'binary').toString();
+                    isVerified = await bcrypt.compareSync(data.password, base64data)
+                }
+                return resolve(isVerified);
+            } catch (error) {
+                reject(error);
+            }
+        });
+    }
 }
 
 module.exports = Common;

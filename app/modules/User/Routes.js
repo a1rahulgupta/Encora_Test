@@ -2,8 +2,6 @@
 module.exports = (app, express) => {
 
     const router = express.Router();
-
-    const Globals = require("../../../configs/Globals");
     const UsersController = require('../User/Controller');
     const config = require('../../../configs/configs');
     const Validators = require("./Validator");

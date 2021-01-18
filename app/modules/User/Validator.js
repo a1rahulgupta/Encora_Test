@@ -1,6 +1,6 @@
 
 const _ = require("lodash");
-let i18n = require("i18n");
+const i18n = require("i18n");
 const { validationResult } = require('express-validator');
 const { check} = require('express-validator');
 
